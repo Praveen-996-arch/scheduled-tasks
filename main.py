@@ -10,7 +10,7 @@ import random
 import os
 
 # 2. Check if today matches a birthday in the birthdays.csv
-date_file = pd.read_csv(filepath_or_buffer="/Users/manasapola/PycharmProjects/Basicsofpython/Birthdaywisher_project/birthday-wisher-extrahard-start/birthdays.csv")
+date_file = pd.read_csv("/Users/manasapola/PycharmProjects/Basicsofpython/Birthdaywisher_project/birthday-wisher-extrahard-start/birthdays.csv")
 date_table = pd.DataFrame(date_file)
 date_file_day = (date_file.day).to_list()
 date_file_month = (date_file.month).to_list()
