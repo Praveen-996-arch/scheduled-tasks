@@ -7,6 +7,7 @@ from datetime import datetime
 import pandas as pd
 import smtplib
 import random 
+import os
 
 # 2. Check if today matches a birthday in the birthdays.csv
 date_file = pd.read_csv(filepath_or_buffer="/Users/manasapola/PycharmProjects/Basicsofpython/Birthdaywisher_project/birthday-wisher-extrahard-start/birthdays.csv")
@@ -19,8 +20,8 @@ letter_file_path = "/Users/manasapola/PycharmProjects/Basicsofpython/Birthdaywis
 letters = ("letter_1","letter_2","letter_3")
 random_letter = random.choice(letters)
 
-email = "polamanasa03@gmail.com"
-password = "uqbl xwsq yvri ztyf"
+email = os.environ.get("MY_EMAIL")
+password = os.environ.get("MY_PASSWORD")
 # 3. If step 2 is true, pick a random letter from letter templates and replace the [NAME] with the person's actual name from birthdays.csv
 if present_day in date_file_day and present_month in date_file_month:
     name = date_file[date_file.day == present_day].name.iloc[0]
