@@ -16,7 +16,7 @@ date_file_day = (date_file.day).to_list()
 date_file_month = (date_file.month).to_list()
 present_day = datetime.now().day
 present_month = datetime.now().month
-letter_file_path = "/Users/manasapola/PycharmProjects/Basicsofpython/Birthdaywisher_project/birthday-wisher-extrahard-start/letter_templates/"
+letter_file_path = "letter_templates"
 letters = ("letter_1","letter_2","letter_3")
 random_letter = random.choice(letters)
 
