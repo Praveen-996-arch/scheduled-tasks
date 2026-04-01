@@ -1,10 +1,10 @@
-API_KEY = os.environ.get("OMW_API_KEY")
+
 MY_LAT = 33.387939
 MY_LNG = -86.806122
 import requests
 from twilio.rest import Client
 import os
-
+API_KEY = os.environ.get("OMW_API_KEY")
 account_sid = os.environ.get("ACC_SID")
 auth_token = os.environ.get("AUTH_TOKEN")
 
