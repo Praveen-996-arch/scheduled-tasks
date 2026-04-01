@@ -30,7 +30,7 @@ for list in data["list"]:
     # weather_description = list["weather"][0]["description"]
 
         client.api.account.messages.create(
-            to="whatsapp:+12052532490",
+            to="whatsapp:+12055099890",
             from_="whatsapp:+14155238886",
             body=f"Bring an umbrella. Its going to rain today at {list["dt_txt"]} ")
 
