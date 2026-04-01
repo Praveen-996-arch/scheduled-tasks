@@ -8,6 +8,8 @@ API_KEY = os.environ.get("OMW_API_KEY")
 account_sid = os.environ.get("ACC_SID")
 auth_token = os.environ.get("AUTH_TOKEN")
 
+print(API_KEY,account_sid,auth_token)
+
 client = Client(account_sid, auth_token)
 
 # client.api.account.messages.create(
