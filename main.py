@@ -1,55 +1,37 @@
-##################### Extra Hard Starting Project ######################
-
-# 1. Update the birthdays.csv
-
-
-from datetime import datetime
-import pandas as pd
-import smtplib
-import random 
+API_KEY = os.environ.get("OMW_API_KEY")
+MY_LAT = 33.387939
+MY_LNG = -86.806122
+import requests
+from twilio.rest import Client
 import os
 
-# 2. Check if today matches a birthday in the birthdays.csv
-date_file = pd.read_csv("birthdays.csv")
-date_table = pd.DataFrame(date_file)
-date_file_day = (date_file.day).to_list()
-date_file_month = (date_file.month).to_list()
-present_day = datetime.now().day
-present_month = datetime.now().month
-letter_file_path = "letter_templates"
-letters = ("letter_1","letter_2","letter_3")
-random_letter = random.choice(letters)
+account_sid = os.environ.get("ACC_SID")
+auth_token = os.environ.get("AUTH_TOKEN")
 
-email = os.environ.get("MY_EMAIL")
-password = os.environ.get("MY_PASSWORD")
-# 3. If step 2 is true, pick a random letter from letter templates and replace the [NAME] with the person's actual name from birthdays.csv
-if present_day in date_file_day and present_month in date_file_month:
-    name = date_file[date_file.day == present_day].name.iloc[0]
-    reciever_email = date_file[date_file.day == present_day].email.iloc[0]
-    with open(f"{letter_file_path}/{random_letter}.txt",mode = "r+") as letter:
-        content = letter.read()
-        content = content.replace("Angela","Manasa")
-        new_name = content.replace("[NAME]", name)
-    # 4. Send the letter generated in step 3 to that person's email address.
-    with smtplib.SMTP("smtp.gmail.com") as connection:
-        connection.starttls()
-        connection.login(user = email, password  = password)
-        connection.sendmail(
-            from_addr = email,
-            to_addrs = reciever_email, 
-            msg = f"Subject:Birthday Wishes\n\n {new_name}"
-            )
-    connection.close()
+client = Client(account_sid, auth_token)
 
+# client.api.account.messages.create(
+#     to="+2055099890",
+#     from_="+18447430228",
+#     body="Hello there!")
+params={
+    "lat" : MY_LAT,
+    "lon" : MY_LNG,
+    "appid" : API_KEY,
+    "cnt" : 6
+}
+response = requests.get(url="https://api.openweathermap.org/data/2.5/forecast", params= params)
+response.raise_for_status()
+data = response.json()
 
-    
-    
+for list in data["list"]:
+    weather_id = list["weather"][0]["id"]
+    if weather_id < 700:
+    # weather_description = list["weather"][0]["description"]
 
-
-
-
-
-
-
+        client.api.account.messages.create(
+            to="whatsapp:+12052532490",
+            from_="whatsapp:+14155238886",
+            body=f"Bring an umbrella. Its going to rain today at {list["dt_txt"]} ")
 
 
