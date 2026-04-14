@@ -35,5 +35,7 @@ for list in data["list"]:
             to="whatsapp:+12055099890",
             from_="whatsapp:+14155238886",
             body=f"Bring an umbrella. Its going to rain today at {list["dt_txt"]} ")
+          .then(message => console.log(message.account_sid))
+          .catch(error => console.error(error))
 
 
