@@ -30,13 +30,14 @@ for list in data["list"]:
     weather_id = list["weather"][0]["id"]
     if weather_id < 700:
     # weather_description = list["weather"][0]["description"]
-
-        client.api.account.messages
-         .create(
-            to="whatsapp:+12055099890",
-            from_="whatsapp:+14155238886",
-            body=f"Bring an umbrella. Its going to rain today at {list["dt_txt"]} ")
-         .then(message => console.log(message.account_sid))
-         .catch(error => console.error(error))
+        try:
+            message = client.api.account.messages.create(
+                to="whatsapp:+12055099890",
+                from_="whatsapp:+14155238886",
+                body=f"Bring an umbrella. It's going to rain today at {list['dt_txt']}"
+            )
+            print(message.account_sid)
+        except Exception as e:
+            print(e)
 
 
