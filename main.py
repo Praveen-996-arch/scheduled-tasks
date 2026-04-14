@@ -35,7 +35,7 @@ for list in data["list"]:
                 from_="whatsapp:+14155238886",
                 body=f"Bring an umbrella. It's going to rain today at {list['dt_txt']}"
             )
-        print(message.account_sid)
+        print(f"account_sid value is: {message.account_sid}")
         
 
 
